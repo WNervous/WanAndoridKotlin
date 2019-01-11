@@ -2,7 +2,8 @@ package com.wys.wankotlinpractice.home.view
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.LinearLayout
+import android.view.View
+import android.widget.FrameLayout
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.base.BaseFragment
 import com.wys.wankotlinpractice.glide.GlideImageLoader
@@ -14,18 +15,21 @@ import com.wys.wankotlinpractice.home.view.adapter.ArticleAdapter
 import com.wys.wankotlinpractice.utils.ScreenUitl
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.view_header_banner.view.*
 
 class HomeFragment : BaseFragment(), HomeContract.View {
 
     private lateinit var homePresenter: HomePresenter
     private val articleAdapter: ArticleAdapter = ArticleAdapter(R.layout.item_article, null)
-
+    private lateinit var bannerView: com.youth.banner.Banner
     override fun getContentViewId(): Int {
         return R.layout.fragment_home
     }
 
     override fun init(savedInstanceState: Bundle?) {
-        val layoutParams = bannerView.layoutParams as LinearLayout.LayoutParams
+        val view = View.inflate(context, R.layout.view_header_banner, null)
+        bannerView = view.bannerView
+        val layoutParams = bannerView.layoutParams as FrameLayout.LayoutParams
         layoutParams.width = ScreenUitl.getScreenInfo(context).widthPixels
         layoutParams.height = ScreenUitl.getScreenInfo(context).widthPixels / 9 * 5
         bannerView.layoutParams = layoutParams
@@ -35,6 +39,9 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         bannerView.setDelayTime(2500)
         bannerView.setImageLoader(GlideImageLoader())
 
+        if (articleAdapter.headerLayout == null) {
+            articleAdapter.setHeaderView(view)
+        }
         recycleView.layoutManager = LinearLayoutManager(context)
         recycleView.adapter = articleAdapter
 
