@@ -17,6 +17,8 @@ import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.view_header_banner.view.*
 
+
+
 class HomeFragment : BaseFragment(), HomeContract.View {
 
     private lateinit var homePresenter: HomePresenter
@@ -42,8 +44,17 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         if (articleAdapter.headerLayout == null) {
             articleAdapter.setHeaderView(view)
         }
+
         recycleView.layoutManager = LinearLayoutManager(context)
         recycleView.adapter = articleAdapter
+
+//        swipeRefreshLayout.setOnRefreshListener {
+//            OnRefreshListener {
+//                homePresenter.getBanner()
+//                homePresenter.getArticle()
+//                it.finishRefresh(2000)
+//            }
+//        }
 
         homePresenter = HomePresenter(this)
         homePresenter.getBanner()

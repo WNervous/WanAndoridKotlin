@@ -1,5 +1,6 @@
 package com.wys.wankotlinpractice.net
 
+import com.wys.wankotlinpractice.net.interceptor.HeaderInterceptor
 import okhttp3.logging.HttpLoggingInterceptor
 
 class ApiService {

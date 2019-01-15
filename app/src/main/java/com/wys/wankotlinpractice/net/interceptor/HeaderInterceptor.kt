@@ -1,4 +1,4 @@
-package com.wys.wankotlinpractice.net
+package com.wys.wankotlinpractice.net.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response
