@@ -3,6 +3,9 @@ package com.wys.wankotlinpractice.home.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.webkit.WebChromeClient
+import android.webkit.WebView
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_article_detail.*
@@ -18,8 +21,25 @@ class ArticleDetailActivity : BaseActivity() {
 
         toolbar.title = title
         webView.loadUrl(link)
+        webView.webChromeClient = WebClient(refreshLayout)
         toolbar.setNavigationOnClickListener { finish() }
+        refreshLayout.setOnRefreshListener {
+            webView.reload()
+        }
+
     }
+
+    class WebClient(var refreshLayout: SmartRefreshLayout) : WebChromeClient() {
+
+        override fun onProgressChanged(view: WebView?, newProgress: Int) {
+            super.onProgressChanged(view, newProgress)
+            if (newProgress == 100) {
+                refreshLayout.finishRefresh()
+            }
+        }
+
+    }
+
 
     companion object {
         const val KEY_TITLE = "KEY_TITLE"

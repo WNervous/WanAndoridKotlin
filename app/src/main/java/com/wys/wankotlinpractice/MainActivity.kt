@@ -33,7 +33,7 @@ class MainActivity : BaseActivity() {
             }
             true
         }
-//        bottomNavigationView.selectedItemId = R.id.home
+        bottomNavigationView.selectedItemId = R.id.home
     }
 
     private fun addFragments() {
@@ -48,6 +48,6 @@ class MainActivity : BaseActivity() {
     private fun initViewPager() {
         viewPager.adapter = mPagerAdapter
         viewPager.currentItem = 0
-        viewPager.offscreenPageLimit=3
+        viewPager.offscreenPageLimit = 3
     }
 }
