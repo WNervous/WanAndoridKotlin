@@ -2,7 +2,7 @@ package com.wys.wankotlinpractice.home.view
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
+import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.base.BaseFragment
@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.view_header_banner.view.*
 
 
-
 class HomeFragment : BaseFragment(), HomeContract.View {
 
     private lateinit var homePresenter: HomePresenter
@@ -29,7 +28,9 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     }
 
     override fun init(savedInstanceState: Bundle?) {
-        val view = View.inflate(context, R.layout.view_header_banner, null)
+        recycleView.layoutManager = LinearLayoutManager(context)
+        recycleView.adapter = articleAdapter
+        val view = LayoutInflater.from(context).inflate(R.layout.view_header_banner, recycleView, false)
         bannerView = view.bannerView
         val layoutParams = bannerView.layoutParams as FrameLayout.LayoutParams
         layoutParams.width = ScreenUitl.getScreenInfo(context).widthPixels
@@ -44,9 +45,6 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         if (articleAdapter.headerLayout == null) {
             articleAdapter.setHeaderView(view)
         }
-
-        recycleView.layoutManager = LinearLayoutManager(context)
-        recycleView.adapter = articleAdapter
 
 //        swipeRefreshLayout.setOnRefreshListener {
 //            OnRefreshListener {

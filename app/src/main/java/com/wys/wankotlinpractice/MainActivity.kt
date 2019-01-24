@@ -48,5 +48,6 @@ class MainActivity : BaseActivity() {
     private fun initViewPager() {
         viewPager.adapter = mPagerAdapter
         viewPager.currentItem = 0
+        viewPager.offscreenPageLimit=3
     }
 }
