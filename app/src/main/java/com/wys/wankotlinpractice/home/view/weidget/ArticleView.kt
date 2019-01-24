@@ -7,6 +7,9 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
 import kotlinx.android.synthetic.main.view_article.view.*
@@ -29,7 +32,14 @@ class ArticleView(context: Context?, attrs: AttributeSet?) : ConstraintLayout(co
         } else {
             articleImg.visibility = View.VISIBLE
             desc.visibility = View.VISIBLE
-            Glide.with(this).load(article.envelopePic).into(articleImg)
+            val options = RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.ic_no_image)
+                .error(R.drawable.ic_no_data)
+                .priority(Priority.HIGH)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+
+            Glide.with(this).load(article.envelopePic).apply(options).into(articleImg)
         }
 
     }

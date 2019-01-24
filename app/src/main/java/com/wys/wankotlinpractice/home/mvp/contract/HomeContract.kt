@@ -9,10 +9,14 @@ class HomeContract {
     interface View : IView {
         fun showBanners(banner: List<Banner>)
         fun showArticles(articleBean: ArticleBean)
+        fun noMoreArticle():Boolean
+        fun articleError()
+        fun bannerError()
     }
 
     interface Presenter : IPresenter {
         fun getBanner()
         fun getArticle()
+        fun loadMoreArticle()
     }
 }

@@ -12,6 +12,9 @@ import io.reactivex.schedulers.Schedulers
 
 class HomePresenter(val view: HomeContract.View) : HomeContract.Presenter {
 
+    var currentPager = 0
+    var pagerCount = 1
+
     override fun getBanner() {
         ApiService.sApi.wanApi().getHomeBanner()
             .subscribeOn(Schedulers.io())
@@ -23,6 +26,7 @@ class HomePresenter(val view: HomeContract.View) : HomeContract.Presenter {
 
                 override fun onFailure(e: Throwable) {
                     KLog.e(e.toString())
+                    view.bannerError()
                 }
             })
     }
@@ -33,11 +37,39 @@ class HomePresenter(val view: HomeContract.View) : HomeContract.Presenter {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : CommonObserver<ArticleBean>() {
                 override fun onSuccess(t: CommonResponse<ArticleBean>) {
-                    view.showArticles(t.data)
+                    val articleBean = t.data
+                    pagerCount = articleBean.pageCount
+                    currentPager = articleBean.curPage
+                    view.showArticles(articleBean)
                 }
 
                 override fun onFailure(e: Throwable) {
                     KLog.e(e.toString())
+                    view.articleError()
+                }
+
+            })
+    }
+
+
+    override fun loadMoreArticle() {
+        if (currentPager >= pagerCount) {
+            view.noMoreArticle()
+            return
+        }
+        ApiService.sApi.wanApi().getHomeArticle(currentPager)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : CommonObserver<ArticleBean>() {
+                override fun onSuccess(t: CommonResponse<ArticleBean>) {
+                    val articleBean = t.data
+                    currentPager = articleBean.curPage
+                    view.showArticles(articleBean)
+                }
+
+                override fun onFailure(e: Throwable) {
+                    KLog.e(e.toString())
+                    view.articleError()
                 }
 
             })

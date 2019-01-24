@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import android.widget.Toast
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.base.BaseFragment
 import com.wys.wankotlinpractice.glide.GlideImageLoader
@@ -46,13 +47,13 @@ class HomeFragment : BaseFragment(), HomeContract.View {
             articleAdapter.setHeaderView(view)
         }
 
-//        swipeRefreshLayout.setOnRefreshListener {
-//            OnRefreshListener {
-//                homePresenter.getBanner()
-//                homePresenter.getArticle()
-//                it.finishRefresh(2000)
-//            }
-//        }
+        refreshLayout.setOnRefreshListener {
+            homePresenter.getArticle()
+        }
+
+        refreshLayout.setOnLoadMoreListener { refreshLayout ->
+            homePresenter.loadMoreArticle()
+        }
 
         homePresenter = HomePresenter(this)
         homePresenter.getBanner()
@@ -83,11 +84,32 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     }
 
     override fun showArticles(articleBean: ArticleBean) {
-        articleAdapter.setNewData(articleBean.datas)
+        if (articleBean.curPage == 1) {
+            articleAdapter.setNewData(articleBean.datas)
+            refreshLayout.finishRefresh()
+        } else {
+            articleAdapter.addData(articleBean.datas)
+            refreshLayout.finishLoadMore()
+        }
     }
 
     override fun isActive(): Boolean {
         return isAdded
+    }
+
+    override fun articleError() {
+        Toast.makeText(context, "article error", Toast.LENGTH_SHORT).show()
+        refreshLayout.finishLoadMore()
+    }
+
+    override fun bannerError() {
+        refreshLayout.finishLoadMore()
+        Toast.makeText(context, "banner error", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun noMoreArticle(): Boolean {
+        refreshLayout.finishLoadMore()
+        return true
     }
 
 
