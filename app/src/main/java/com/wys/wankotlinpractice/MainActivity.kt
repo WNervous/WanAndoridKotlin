@@ -23,6 +23,11 @@ class MainActivity : BaseActivity() {
     }
 
     private fun init() {
+
+//        val hander=Handler{
+//
+//            return@Handler false
+//        }
         bottomNavigationView.setOnNavigationItemSelectedListener {
             toolbar.title = it.title
             when (it.itemId) {
