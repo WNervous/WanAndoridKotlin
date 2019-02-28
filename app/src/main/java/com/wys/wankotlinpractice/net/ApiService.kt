@@ -9,7 +9,7 @@ class ApiService {
     private val mBaseUrl = "http://www.wanandroid.com/"
     private val mBaseTestUrl = "http://www.wanandroid.com/"
 
-    lateinit var mBaseApi: BaseApi
+    private lateinit var mBaseApi: BaseApi
 
     init {
         val httpLoggingInterceptor = HttpLoggingInterceptor()

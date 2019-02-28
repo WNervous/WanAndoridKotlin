@@ -13,8 +13,8 @@ import kotlinx.android.synthetic.main.fragment_knowledge.*
 class KnowledgeFragment : BaseFragment(), KonwledgeContract.View {
 
 
-    lateinit var knowledgePresenter: KnowledgePresenter
-    lateinit var knowledgeAdapter: KnowledgeAdapter
+    private lateinit var knowledgePresenter: KnowledgePresenter
+    private lateinit var knowledgeAdapter: KnowledgeAdapter
     private val datas: List<KnowledgeBean> = listOf()
 
     override fun getContentViewId(): Int = R.layout.fragment_knowledge
