@@ -1,10 +1,10 @@
 package com.wys.wankotlinpractice.net
 
+import com.baronzhang.retrofit2.converter.FastJsonConverterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 open class BaseApi(builder: Builder) {
@@ -20,6 +20,7 @@ open class BaseApi(builder: Builder) {
             .writeTimeout(builder.writeTimeOut, TimeUnit.SECONDS)
 
         if (builder.headerInterceptor != null) okHttpBuilder.addInterceptor(builder.headerInterceptor!!)
+        if (builder.paramsInterceptor != null) okHttpBuilder.addInterceptor(builder.paramsInterceptor!!)
         if (!builder.isRelease) {
             if (builder.httpLogInterceptor != null) okHttpBuilder.addInterceptor(builder.httpLogInterceptor!!)
             if (builder.networkInterceptor != null) okHttpBuilder.addNetworkInterceptor(builder.networkInterceptor!!)
@@ -30,7 +31,7 @@ open class BaseApi(builder: Builder) {
             .baseUrl(mBaseUrl!!)
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(FastJsonConverterFactory.create())
             .build()
     }
 
@@ -43,6 +44,7 @@ open class BaseApi(builder: Builder) {
         internal var networkInterceptor: Interceptor? = null
         internal var httpLogInterceptor: Interceptor? = null
         internal var headerInterceptor: Interceptor? = null
+        internal var paramsInterceptor: Interceptor? = null
 
         internal var baseReleaseUrl: String? = null
         internal var baseDebugUrl: String? = null

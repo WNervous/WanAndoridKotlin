@@ -1,6 +1,7 @@
 package com.wys.wankotlinpractice.net
 
 import com.wys.wankotlinpractice.net.interceptor.HeaderInterceptor
+import com.wys.wankotlinpractice.net.interceptor.ParamsInterceptor
 import okhttp3.logging.HttpLoggingInterceptor
 
 class ApiService {
@@ -22,6 +23,7 @@ class ApiService {
             writeTimeOut = DEFAULT_TIME_OUT
             headerInterceptor = HeaderInterceptor()
             httpLogInterceptor = httpLoggingInterceptor
+            paramsInterceptor = ParamsInterceptor()
             mBaseApi = builder()
         }
     }
