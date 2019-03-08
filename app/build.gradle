@@ -19,6 +19,16 @@ android {
         abortOnError false
     }
 
+    signingConfigs {
+        release {
+            keyAlias System.getenv("SIGN_ALIAS")
+            keyPassword System.getenv("SIGN_PASSWORD")
+            storeFile file(System.getenv("SIGN_KEYSTORE") != null ? System.getenv("SIGN_KEYSTORE") : "/dev/null")
+            storePassword System.getenv("STORE_PASSWORD")
+        }
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
