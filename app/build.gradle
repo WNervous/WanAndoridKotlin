@@ -5,14 +5,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 
-def getMyStoreFile(){
-    if("true".equals(IS_JENKINS)){
+def getMyStoreFile() {
+    if ("true".equals(IS_JENKINS)) {
         print("使用Jenkins打包时的证书路径")
-    }else{
+    } else {
         print("使用Android Studio打包时证书路径")
     }
 }
-preBuild{
+
+preBuild {
     getMyStoreFile()
 }
 android {
