@@ -24,5 +24,10 @@ allprojects {
 }
 
 task clean(type: Delete) {
+    if ("ture" == IS_JENKINS) {
+        print("使用Jenkins 配置")
+    } else {
+        print("不是 使用Jenkins 配置")
+    }
     delete rootProject.buildDir
 }
