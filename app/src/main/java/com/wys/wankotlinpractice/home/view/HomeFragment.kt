@@ -51,7 +51,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
             homePresenter.getArticle()
         }
 
-        refreshLayout.setOnLoadMoreListener { refreshLayout ->
+        refreshLayout.setOnLoadMoreListener {
             homePresenter.loadMoreArticle()
         }
 

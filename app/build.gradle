@@ -71,7 +71,7 @@ android {
 //        }
         it.outputs.each {
             if (buildType == "release") {
-                fileName = "drumpad_v${defaultConfig.versionName}_r${defaultConfig.versionCode}_${buildType}.apk"
+                fileName = "wankotlin_v${defaultConfig.versionName}_r${defaultConfig.versionCode}_${buildType}.apk"
                 //重新对apk命名。(适用于Gradle4.0以下版本)
                 //it.outputFile = new File(it.outputFile.parent, fileName)
                 //重新对apk命名。(适用于Gradle4.0（含）以上版本)如果你Gradle版本是4.0以下版本则将上面的一行代码放开并注释下面的这一行。
