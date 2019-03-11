@@ -70,6 +70,12 @@ android {
 //        if (buildType == "release") {
 //            it.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apks/${it.productFlavors[0].applicationId}/${createTime}")
 //        }
+        it.outputs.all { output ->
+            if (buildType == "release") {
+                output.versionNameOverride = VERSION_NAME
+                output.versionCodeOverride = VERSION_CODE
+            }
+        }
         it.outputs.each {
             if (buildType == "release") {
                 fileName = "wankotlin_v${defaultConfig.versionName}_r${defaultConfig.versionCode}_${buildType}.apk"
