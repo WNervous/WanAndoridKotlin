@@ -25,6 +25,8 @@ class ApiService {
             httpLogInterceptor = httpLoggingInterceptor
             paramsInterceptor = ParamsInterceptor()
             mBaseApi = builder()
+
+
         }
     }
 

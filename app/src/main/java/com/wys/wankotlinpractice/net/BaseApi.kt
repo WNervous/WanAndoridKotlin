@@ -1,14 +1,14 @@
 package com.wys.wankotlinpractice.net
 
-import com.baronzhang.retrofit2.converter.FastJsonConverterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 open class BaseApi(builder: Builder) {
-    private var mBaseUrl: String? = "http://www.wanandroid.com/"
+    private var mBaseUrl: String?
     private var retrofit: Retrofit
     private var okHttpClient: OkHttpClient
 
@@ -31,7 +31,7 @@ open class BaseApi(builder: Builder) {
             .baseUrl(mBaseUrl!!)
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(FastJsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
