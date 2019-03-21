@@ -13,6 +13,7 @@
             android:drawableRight="@drawable/ic_arrow_right"
             android:gravity="center_vertical"
             android:text="知识体系"
+            app:layout_constraintTop_toTopOf="parent"
             android:textSize="24sp"
             android:textColor="@android:color/black"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -24,5 +25,14 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/knowledgeType"/>
 
+    <View
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintTop_toBottomOf="@+id/knowledgeLayout"
+            android:layout_height="1px"/>
 
 </android.support.constraint.ConstraintLayout>

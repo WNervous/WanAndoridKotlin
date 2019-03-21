@@ -1,16 +1,16 @@
-package com.wys.wankotlinpractice.knowledge.mvp.view
+package com.wys.wankotlinpractice.knowledge.mvp.view.fragment
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.base.BaseFragment
 import com.wys.wankotlinpractice.knowledge.adapter.KnowledgeAdapter
-import com.wys.wankotlinpractice.knowledge.mvp.contract.KonwledgeContract
+import com.wys.wankotlinpractice.knowledge.mvp.contract.KnowledgeContract
 import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeBean
 import com.wys.wankotlinpractice.knowledge.mvp.presenter.KnowledgePresenter
 import kotlinx.android.synthetic.main.fragment_knowledge.*
 
-class KnowledgeFragment : BaseFragment(), KonwledgeContract.View {
+class KnowledgeFragment : BaseFragment(), KnowledgeContract.View {
 
 
     private lateinit var knowledgePresenter: KnowledgePresenter

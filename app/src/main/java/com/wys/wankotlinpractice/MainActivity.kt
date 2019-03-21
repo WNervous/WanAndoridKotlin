@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import com.wys.wankotlinpractice.adapter.ViewPagerAdapter
 import com.wys.wankotlinpractice.base.BaseActivity
 import com.wys.wankotlinpractice.home.view.HomeFragment
-import com.wys.wankotlinpractice.knowledge.mvp.view.KnowledgeFragment
+import com.wys.wankotlinpractice.knowledge.mvp.view.fragment.KnowledgeFragment
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 

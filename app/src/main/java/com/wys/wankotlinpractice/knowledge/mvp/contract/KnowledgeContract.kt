@@ -4,7 +4,7 @@ import com.wys.wankotlinpractice.base.IPresenter
 import com.wys.wankotlinpractice.base.IView
 import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeBean
 
-class KonwledgeContract {
+class KnowledgeContract {
     interface View : IView {
         fun showKnowledgeSeries(knowledge: List<KnowledgeBean>)
     }

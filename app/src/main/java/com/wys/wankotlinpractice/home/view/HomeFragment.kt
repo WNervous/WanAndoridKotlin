@@ -13,7 +13,7 @@ import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
 import com.wys.wankotlinpractice.home.mvp.model.Banner
 import com.wys.wankotlinpractice.home.mvp.presenter.HomePresenter
 import com.wys.wankotlinpractice.home.view.adapter.ArticleAdapter
-import com.wys.wankotlinpractice.utils.ScreenUitl
+import com.wys.wankotlinpractice.utils.ScreenUtil
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.view_header_banner.view.*
@@ -34,8 +34,8 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         val view = LayoutInflater.from(context).inflate(R.layout.view_header_banner, recycleView, false)
         bannerView = view.bannerView
         val layoutParams = bannerView.layoutParams as FrameLayout.LayoutParams
-        layoutParams.width = ScreenUitl.getScreenInfo(context).widthPixels
-        layoutParams.height = ScreenUitl.getScreenInfo(context).widthPixels / 9 * 5
+        layoutParams.width = ScreenUtil.getScreenInfo(context).widthPixels
+        layoutParams.height = ScreenUtil.getScreenInfo(context).widthPixels / 9 * 5
         bannerView.layoutParams = layoutParams
         bannerView.setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
         bannerView.isAutoPlay(true)

@@ -29,8 +29,13 @@
                 android:screenOrientation="sensorPortrait"
                 android:theme="@style/WebTheme"/>
 
-        <activity android:name=".NotificationActivity"
+        <activity
+                android:name=".NotificationActivity"
                 android:parentActivityName=".MainActivity"/>
+
+        <activity
+                android:name=".knowledge.mvp.view.activity.KnowledgeDetailActivity"
+                android:screenOrientation="sensorPortrait"/>
     </application>
 
 </manifest>

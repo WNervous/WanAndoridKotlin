@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.DisplayMetrics
 
 
-class ScreenUitl {
+class ScreenUtil {
 
     companion object {
         fun getScreenInfo(context: Context?): DisplayMetrics {
