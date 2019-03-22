@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.base.BaseActivity
+import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeBean
 import com.wys.wankotlinpractice.knowledge.mvp.view.fragment.KnowledgeDetailFragment
 
 class KnowledgeDetailActivity : BaseActivity() {
@@ -14,7 +15,7 @@ class KnowledgeDetailActivity : BaseActivity() {
 
     override fun init(savedInstanceState: Bundle?) {
         fragment = if (savedInstanceState == null) {
-            KnowledgeDetailFragment()
+            KnowledgeDetailFragment.newInstance(intent.getSerializableExtra(KEY_KNOWLEDGE) as KnowledgeBean)
         } else {
             supportFragmentManager.getFragment(
                 savedInstanceState,
@@ -30,8 +31,11 @@ class KnowledgeDetailActivity : BaseActivity() {
     }
 
     companion object {
-        fun open(context: Context) {
-            context.startActivity(Intent(context, KnowledgeDetailActivity::class.java))
+        const val KEY_KNOWLEDGE = "KEY_KNOWLEDGE"
+        fun open(context: Context, knowledgeBean: KnowledgeBean) {
+            val intent = Intent(context, KnowledgeDetailActivity::class.java)
+            intent.putExtra(KEY_KNOWLEDGE, knowledgeBean)
+            context.startActivity(intent)
         }
     }
 }

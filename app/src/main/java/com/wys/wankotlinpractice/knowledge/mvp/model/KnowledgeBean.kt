@@ -1,5 +1,7 @@
 package com.wys.wankotlinpractice.knowledge.mvp.model
 
+import java.io.Serializable
+
 data class KnowledgeBean(
     val children: List<Children>,
     val courseId: Int,
@@ -9,7 +11,7 @@ data class KnowledgeBean(
     val parentChapterId: Int,
     val userControlSetTop: Boolean,
     val visible: Int
-)
+) : Serializable
 
 data class Children(
     val children: List<Any>,
@@ -20,4 +22,4 @@ data class Children(
     val parentChapterId: Int,
     val userControlSetTop: Boolean,
     val visible: Int
-)
+) :Serializable

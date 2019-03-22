@@ -3,6 +3,9 @@ package com.wys.wankotlinpractice.knowledge.mvp.view.fragment
 import android.os.Bundle
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.base.BaseFragment
+import com.wys.wankotlinpractice.knowledge.adapter.KnowledgePagerAdapter
+import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeBean
+import com.wys.wankotlinpractice.knowledge.mvp.view.activity.KnowledgeDetailActivity
 import kotlinx.android.synthetic.main.fragment_knowledge_detail.*
 
 class KnowledgeDetailFragment : BaseFragment() {
@@ -10,27 +13,25 @@ class KnowledgeDetailFragment : BaseFragment() {
     override fun getContentViewId(): Int = R.layout.fragment_knowledge_detail
 
     override fun init(savedInstanceState: Bundle?) {
-//        viewPager.adapter = KnowledgeAdapter()
-        slidingTabLayout.setViewPager(viewPager)
+        toolbar.setNavigationOnClickListener { activity?.finish() }
+        val knowledgeBean = arguments?.getSerializable(KnowledgeDetailActivity.KEY_KNOWLEDGE) as KnowledgeBean
+        toolbar.title = knowledgeBean.name
+        viewPager.adapter = KnowledgePagerAdapter(fragmentManager, knowledgeBean.children)
+        val array = Array(knowledgeBean.children.size) {
+            knowledgeBean.children[it].name
+        }
+        slidingTabLayout.setViewPager(viewPager, array)
     }
 
     companion object {
-        fun newInstace(): KnowledgeDetailFragment {
+        fun newInstance(knowledgeBean: KnowledgeBean): KnowledgeDetailFragment {
             val knowledgeDetailFragment = KnowledgeDetailFragment()
             val bundle = Bundle()
-            return bundle.let {
-                knowledgeDetailFragment.arguments = it
-                knowledgeDetailFragment
-            }
-
-
-//            val knowledgeDetailFragment = KnowledgeDetailFragment()
-//            return knowledgeDetailFragment.also {
-//                val bundle = Bundle()
-//                bundle.putString("", "")
-//                knowledgeDetailFragment.arguments = bundle
-//            }
+            bundle.putSerializable(KnowledgeDetailActivity.KEY_KNOWLEDGE, knowledgeBean)
+            knowledgeDetailFragment.arguments = bundle
+            return knowledgeDetailFragment
         }
     }
+
 
 }

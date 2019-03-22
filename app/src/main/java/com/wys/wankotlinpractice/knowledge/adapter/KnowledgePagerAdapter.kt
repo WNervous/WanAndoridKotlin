@@ -7,16 +7,14 @@ import com.wys.wankotlinpractice.knowledge.mvp.model.Children
 import com.wys.wankotlinpractice.knowledge.mvp.view.fragment.KnowledgeItemFragment
 
 class KnowledgePagerAdapter(
-    private val fragmentManager: FragmentManager,
-    private val itemCount: Int,
+    fragmentManager: FragmentManager?,
     private val list: List<Children>
 ) : FragmentPagerAdapter(fragmentManager) {
-
 
     override fun getItem(p0: Int): Fragment {
         return KnowledgeItemFragment()
     }
 
-    override fun getCount(): Int = itemCount
+    override fun getCount(): Int = if (list.isEmpty()) 0 else list.size
 
 }

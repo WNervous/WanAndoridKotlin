@@ -26,7 +26,7 @@ class KnowledgeAdapter(@LayoutRes int: Int, list: List<KnowledgeBean>) :
             content.setSpan(UnderlineSpan(), 0, name.length, SpannableString.SPAN_INCLUSIVE_INCLUSIVE)
             textView.text = content
             textView.setOnClickListener {
-                KnowledgeDetailActivity.open(context = mContext)
+                KnowledgeDetailActivity.open(context = mContext, knowledgeBean = item)
             }
             flowLayout.addView(textView)
         }
