@@ -7,7 +7,7 @@ import io.reactivex.schedulers.Schedulers
 
 class KnowledgePresenter(val view: KnowledgeContract.View) : KnowledgeContract.Presenter {
     override fun getKnowledgeSeries() {
-        ApiService.sApi.wanApi().getKnowledgeService()
+        ApiService.sApi.wanApi().getKnowledgeSeries()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {

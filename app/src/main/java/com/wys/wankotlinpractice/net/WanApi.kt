@@ -3,6 +3,7 @@ package com.wys.wankotlinpractice.net
 import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
 import com.wys.wankotlinpractice.home.mvp.model.Banner
 import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeBean
+import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeDetailBean
 import com.wys.wankotlinpractice.net.bean.CommonResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -22,10 +23,10 @@ interface WanApi {
 
     /** knowledge*/
     @GET("tree/json")
-    fun getKnowledgeService(): Observable<CommonResponse<List<KnowledgeBean>>>
+    fun getKnowledgeSeries(): Observable<CommonResponse<List<KnowledgeBean>>>
 
     @GET("article/list/{page}/json?cid={cid}")
-    fun getSeriesArticle(@Path("page") page: Int, @Path("cid") cid: Int)
+    fun getSeriesDetails(@Path("page") page: Int, @Path("cid") cid: Int): Observable<CommonResponse<KnowledgeDetailBean>>
 
 
 }
