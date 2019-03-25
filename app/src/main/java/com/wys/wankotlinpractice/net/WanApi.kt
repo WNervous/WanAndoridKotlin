@@ -8,6 +8,7 @@ import com.wys.wankotlinpractice.net.bean.CommonResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface WanApi {
 
@@ -26,7 +27,7 @@ interface WanApi {
     fun getKnowledgeSeries(): Observable<CommonResponse<List<KnowledgeBean>>>
 
     @GET("article/list/{page}/json?cid={cid}")
-    fun getSeriesDetails(@Path("page") page: Int, @Path("cid") cid: Int): Observable<CommonResponse<KnowledgeDetailBean>>
+    fun getSeriesDetails(@Query("page") page: Int, @Query("cid") cid: Int): Observable<CommonResponse<KnowledgeDetailBean>>
 
 
 }

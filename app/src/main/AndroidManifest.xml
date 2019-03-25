@@ -35,7 +35,8 @@
 
         <activity
                 android:name=".knowledge.mvp.view.activity.KnowledgeDetailActivity"
-                android:screenOrientation="sensorPortrait"/>
+                android:screenOrientation="sensorPortrait"
+                />
     </application>
 
 </manifest>
