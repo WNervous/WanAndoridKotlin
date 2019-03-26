@@ -4,10 +4,10 @@ import java.io.Serializable
 
 data class KnowledgeDetailBean(
     val datas: List<KnowledgePointBean>,
-    val curPager: Int,
+    val curPage: Int,
     val offset: Int,
     val over: Boolean,
-    val pagerCount: Int,
+    val pageCount: Int,
     val size: Int,
     val total: Int
 ) : Serializable

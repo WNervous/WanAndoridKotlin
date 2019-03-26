@@ -26,8 +26,8 @@ interface WanApi {
     @GET("tree/json")
     fun getKnowledgeSeries(): Observable<CommonResponse<List<KnowledgeBean>>>
 
-    @GET("article/list/{page}/json?cid={cid}")
-    fun getSeriesDetails(@Query("page") page: Int, @Query("cid") cid: Int): Observable<CommonResponse<KnowledgeDetailBean>>
+    @GET("article/list/{page}/json")
+    fun getSeriesDetails(@Path("page") page: Int, @Query("cid") cid: Int): Observable<CommonResponse<KnowledgeDetailBean>>
 
 
 }

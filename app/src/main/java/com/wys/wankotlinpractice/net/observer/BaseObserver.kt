@@ -4,13 +4,13 @@ import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
 abstract class BaseObserver<T> : Observer<T> {
-
+    lateinit var disposable: Disposable
     override fun onComplete() {
 
     }
 
     override fun onSubscribe(d: Disposable) {
-
+        disposable = d
     }
 
     override fun onNext(t: T) {

@@ -7,11 +7,14 @@ import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeDetailBean
 class KnowledgeDetailContract {
 
     interface View : IView {
-        fun showKnowledgeDetail(knowledgeDetailBean: KnowledgeDetailBean)
+        fun showRefreshKnowledgeDetail(knowledgeDetailBean: KnowledgeDetailBean)
+        fun showLoadMoreKnowledgeDetail(knowledgeDetailBean: KnowledgeDetailBean)
+        fun noMoreData()
+        fun onFailed(refresh: Boolean)
     }
 
     interface Presenter : IPresenter {
-        fun getKnowledgeDetail(pagerId: Int, cid: Int,refresh:Boolean)
+        fun getKnowledgeDetail(cid: Int,refresh:Boolean)
     }
 
 }
