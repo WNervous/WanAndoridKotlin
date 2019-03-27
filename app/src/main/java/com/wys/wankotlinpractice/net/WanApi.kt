@@ -6,6 +6,7 @@ import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeBean
 import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeDetailBean
 import com.wys.wankotlinpractice.nav.model.NavBean
 import com.wys.wankotlinpractice.net.bean.CommonResponse
+import com.wys.wankotlinpractice.project.model.ProjectBean
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -22,7 +23,6 @@ interface WanApi {
     @GET("article/list/{page}/json")
     fun getHomeArticle(@Path("page") page: Int): Observable<CommonResponse<ArticleBean>>
 
-
     /** knowledge*/
     @GET("tree/json")
     fun getKnowledgeSeries(): Observable<CommonResponse<List<KnowledgeBean>>>
@@ -32,6 +32,13 @@ interface WanApi {
 
     /**nav */
     @GET("navi/json")
-    fun getNav() :Observable<CommonResponse<List<NavBean>>>
+    fun getNav(): Observable<CommonResponse<List<NavBean>>>
+
+    /**project*/
+    @GET("project/tree/json")
+    fun getProjects(): Observable<CommonResponse<MutableList<ProjectBean>>>
+
+    @GET("project/list/{page}/json")
+    fun getProjectDetails(@Path("page") page: Int, @Query("cid") cid: Int): Observable<CommonResponse<ArticleBean>>
 
 }
