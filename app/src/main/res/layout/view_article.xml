@@ -55,6 +55,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             app:layout_constraintBottom_toBottomOf="@+id/authorIcon"
+            app:layout_constraintTop_toTopOf="@+id/authorIcon"
             app:layout_constraintLeft_toRightOf="@+id/authorIcon"
             android:layout_height="wrap_content"/>
 

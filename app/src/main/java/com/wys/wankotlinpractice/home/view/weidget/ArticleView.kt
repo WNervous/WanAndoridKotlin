@@ -41,6 +41,14 @@ class ArticleView(context: Context?, attrs: AttributeSet?) : ConstraintLayout(co
 
             Glide.with(this).load(article.envelopePic).apply(options).into(articleImg)
         }
+        collection.setImageResource(if (article.collect) R.drawable.ic_collection else R.drawable.ic_uncollection)
+        collection.setOnClickListener {
+            if (article.collect) {
+
+            } else {
+
+            }
+        }
 
     }
 
