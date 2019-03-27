@@ -20,7 +20,9 @@ class KnowledgeAdapter(@LayoutRes int: Int, list: List<KnowledgeBean>) :
         for (childrenTree in item.children) {
             val name = childrenTree.name
             val textView = TextView(helper.itemView.context)
-            textView.setPadding(0, 14, 20, 0)
+            textView.isClickable = true
+            textView.textSize = 16f
+            textView.setPadding(0, 14, 30, 0)
             textView.setTextColor(mContext.resources.getColor(R.color.knowledge_point_text_color))
             val content = SpannableString(name)
             content.setSpan(UnderlineSpan(), 0, name.length, SpannableString.SPAN_INCLUSIVE_INCLUSIVE)
@@ -29,6 +31,10 @@ class KnowledgeAdapter(@LayoutRes int: Int, list: List<KnowledgeBean>) :
                 KnowledgeDetailActivity.open(context = mContext, knowledgeBean = item)
             }
             flowLayout.addView(textView)
+        }
+
+        helper.itemView.setOnClickListener {
+            KnowledgeDetailActivity.open(context = mContext, knowledgeBean = item)
         }
     }
 

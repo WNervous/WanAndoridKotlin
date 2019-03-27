@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.base.BaseActivity
@@ -22,12 +24,24 @@ class ArticleDetailActivity : BaseActivity() {
         toolbar.title = title
         webView.loadUrl(link)
         webView.webChromeClient = WebClient(refreshLayout)
+        webView.webViewClient = MyWebClient()
         toolbar.setNavigationOnClickListener { finish() }
         refreshLayout.setOnRefreshListener {
             webView.reload()
         }
 
     }
+
+    //////////////////////////////////////////////////////////////////////////////
+    //inner class
+    //////////////////////////////////////////////////////////////////////////////
+    class MyWebClient : WebViewClient() {
+        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+            view?.loadUrl(request?.url.toString())
+            return super.shouldOverrideUrlLoading(view, request)
+        }
+    }
+
 
     class WebClient(var refreshLayout: SmartRefreshLayout) : WebChromeClient() {
 

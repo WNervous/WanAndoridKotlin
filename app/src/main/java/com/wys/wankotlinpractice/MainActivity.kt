@@ -6,6 +6,7 @@ import com.wys.wankotlinpractice.adapter.ViewPagerAdapter
 import com.wys.wankotlinpractice.base.BaseActivity
 import com.wys.wankotlinpractice.home.view.HomeFragment
 import com.wys.wankotlinpractice.knowledge.mvp.view.fragment.KnowledgeFragment
+import com.wys.wankotlinpractice.nav.view.NavFragment
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -45,7 +46,7 @@ class MainActivity : BaseActivity() {
         fragments = mutableListOf()
         fragments.add(HomeFragment())
         fragments.add(KnowledgeFragment())
-        fragments.add(KnowledgeFragment())
+        fragments.add(NavFragment())
         fragments.add(KnowledgeFragment())
         mPagerAdapter = ViewPagerAdapter(supportFragmentManager, fragments)
     }
