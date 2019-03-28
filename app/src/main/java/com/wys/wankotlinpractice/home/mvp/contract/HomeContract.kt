@@ -8,15 +8,14 @@ import com.wys.wankotlinpractice.home.mvp.model.Banner
 class HomeContract {
     interface View : IView {
         fun showBanners(banner: List<Banner>)
-        fun showArticles(articleBean: ArticleBean)
-        fun noMoreArticle():Boolean
+        fun showArticles(articleBean: ArticleBean, refresh: Boolean)
+        fun noMoreArticle()
         fun articleError()
         fun bannerError()
     }
 
     interface Presenter : IPresenter {
         fun getBanner()
-        fun getArticle()
-        fun loadMoreArticle()
+        fun getArticle(refresh: Boolean)
     }
 }

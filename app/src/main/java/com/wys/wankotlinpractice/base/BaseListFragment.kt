@@ -20,9 +20,9 @@ abstract class BaseListFragment<T : Any> : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
-    var smartRefreshLayout: SmartRefreshLayout? = null
+    lateinit var smartRefreshLayout: SmartRefreshLayout
 
-    var adapter: BaseQuickAdapter<T, BaseViewHolder>? = null
+    lateinit var adapter: BaseQuickAdapter<T, BaseViewHolder>
 
     var isLoading: Boolean = false
     private var hasMore: Boolean = false
@@ -36,9 +36,9 @@ abstract class BaseListFragment<T : Any> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init(savedInstanceState)
         initRecycleView(view)
         initSmartRefreshView(view)
+        init(savedInstanceState)
     }
 
     private fun initRecycleView(view: View) {
@@ -51,17 +51,15 @@ abstract class BaseListFragment<T : Any> : Fragment() {
 
     private fun initSmartRefreshView(view: View) {
         smartRefreshLayout = view.findViewById(R.id.refreshLayout)
-        smartRefreshLayout!!.setOnRefreshListener { refreshData() }
-        smartRefreshLayout!!.setOnLoadMoreListener {
-            if (adapter != null) {
-                requestMoreData()
-            }
+        smartRefreshLayout.setOnRefreshListener { refreshData() }
+        smartRefreshLayout.setOnLoadMoreListener {
+            requestMoreData()
         }
-        smartRefreshLayout!!.setEnableLoadMoreWhenContentNotFull(false)
+        smartRefreshLayout.setEnableLoadMoreWhenContentNotFull(false)
         //设置默认的加载 loading header 和 footer
-        smartRefreshLayout!!.setRefreshHeader(MaterialHeader(context!!))
+        smartRefreshLayout.setRefreshHeader(MaterialHeader(context!!))
         val classicsFooter = ClassicsFooter(context!!)
-        smartRefreshLayout!!.setRefreshFooter(classicsFooter)
+        smartRefreshLayout.setRefreshFooter(classicsFooter)
     }
 
     abstract fun createAdapter(): BaseQuickAdapter<T, BaseViewHolder>
@@ -86,11 +84,11 @@ abstract class BaseListFragment<T : Any> : Fragment() {
      * 设置  smartrefreshlayoutt  header footer
      */
     fun setRefreshHeader(refreshHeader: RefreshHeader) {
-        smartRefreshLayout!!.setRefreshHeader(refreshHeader)
+        smartRefreshLayout.setRefreshHeader(refreshHeader)
     }
 
     fun setRefreshFooter(refreshFooter: RefreshFooter) {
-        smartRefreshLayout!!.setRefreshFooter(refreshFooter)
+        smartRefreshLayout.setRefreshFooter(refreshFooter)
     }
 
     /**
@@ -100,35 +98,33 @@ abstract class BaseListFragment<T : Any> : Fragment() {
         addRecycleViewHeader(header, -1)
     }
 
-    fun addRecycleViewHeader(header: View, index: Int) {
-        adapter!!.addHeaderView(header, index)
+    private fun addRecycleViewHeader(header: View, index: Int) {
+        adapter.addHeaderView(header, index)
     }
 
     fun addRecycleViewFooter(view: View) {
         addRecycleViewFooter(view, -1)
     }
 
-    fun addRecycleViewFooter(view: View, index: Int) {
-        adapter!!.addFooterView(view, index)
+    private fun addRecycleViewFooter(view: View, index: Int) {
+        adapter.addFooterView(view, index)
     }
+
     /**
      * 禁止下拉刷新
      */
     fun enableRefresh(refresh: Boolean) {
-        smartRefreshLayout!!.setEnableRefresh(refresh)
+        smartRefreshLayout.setEnableRefresh(refresh)
     }
 
     /**
      * 禁止上拉加载
      */
     fun enableLoadMore(loadMore: Boolean) {
-        smartRefreshLayout!!.setEnableLoadMore(loadMore)
+        smartRefreshLayout.setEnableLoadMore(loadMore)
     }
 
     fun complete() {
-        if (smartRefreshLayout == null) {
-            return
-        }
         isLoading = false
     }
 
@@ -140,10 +136,9 @@ abstract class BaseListFragment<T : Any> : Fragment() {
     fun refreshSuccess(success: Boolean) {
         complete()
         if (success) {
-            smartRefreshLayout!!.finishRefresh()
-            smartRefreshLayout!!.resetNoMoreData()//复原状态
+            smartRefreshLayout.finishRefresh()
         } else {
-            smartRefreshLayout!!.finishRefresh(false)//表示刷新失败（不会更新时间）
+            smartRefreshLayout.finishRefresh(false)//表示刷新失败（不会更新时间）
         }
     }
 
@@ -156,12 +151,12 @@ abstract class BaseListFragment<T : Any> : Fragment() {
         complete()
         if (success) {
             if (hasMore()) {
-                smartRefreshLayout!!.finishRefresh()
+                smartRefreshLayout.finishLoadMore()
             } else {
-                smartRefreshLayout!!.finishLoadMoreWithNoMoreData()//复原状态
+                smartRefreshLayout.finishLoadMoreWithNoMoreData()//复原状态
             }
         } else {
-            smartRefreshLayout!!.finishRefresh(false)//表示刷新失败（不会更新时间）
+            smartRefreshLayout.finishLoadMore(false)//表示刷新失败（不会更新时间）
         }
     }
 

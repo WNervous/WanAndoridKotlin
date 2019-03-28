@@ -14,6 +14,7 @@ class HomePresenter(val view: HomeContract.View) : HomeContract.Presenter {
 
     var currentPager = 0
     var pagerCount = 1
+    var over = false
 
     override fun getBanner() {
         ApiService.sApi.wanApi().getHomeBanner()
@@ -31,31 +32,16 @@ class HomePresenter(val view: HomeContract.View) : HomeContract.Presenter {
             })
     }
 
-    override fun getArticle() {
-        ApiService.sApi.wanApi().getHomeArticle(0)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : CommonObserver<ArticleBean>() {
-                override fun onSuccess(t: CommonResponse<ArticleBean>) {
-                    val articleBean = t.data
-                    pagerCount = articleBean.pageCount
-                    currentPager = articleBean.curPage
-                    view.showArticles(articleBean)
-                }
 
-                override fun onFailure(e: Throwable) {
-                    KLog.e(e.toString())
-                    view.articleError()
-                }
-
-            })
-    }
-
-
-    override fun loadMoreArticle() {
-        if (currentPager >= pagerCount) {
-            view.noMoreArticle()
-            return
+    override fun getArticle(refresh: Boolean) {
+        if (refresh) {
+            currentPager = 0
+        } else {
+            if (over) {
+                view.noMoreArticle()
+                return
+            }
+            currentPager++
         }
         ApiService.sApi.wanApi().getHomeArticle(currentPager)
             .subscribeOn(Schedulers.io())
@@ -63,8 +49,8 @@ class HomePresenter(val view: HomeContract.View) : HomeContract.Presenter {
             .subscribe(object : CommonObserver<ArticleBean>() {
                 override fun onSuccess(t: CommonResponse<ArticleBean>) {
                     val articleBean = t.data
-                    currentPager = articleBean.curPage
-                    view.showArticles(articleBean)
+                    over = t.data.over
+                    view.showArticles(articleBean, refresh)
                 }
 
                 override fun onFailure(e: Throwable) {

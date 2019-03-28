@@ -1,12 +1,13 @@
 package com.wys.wankotlinpractice.home.view
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.Toast
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseViewHolder
 import com.wys.wankotlinpractice.R
-import com.wys.wankotlinpractice.base.BaseFragment
+import com.wys.wankotlinpractice.base.BaseListFragment
 import com.wys.wankotlinpractice.glide.GlideImageLoader
 import com.wys.wankotlinpractice.home.mvp.contract.HomeContract
 import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
@@ -18,20 +19,19 @@ import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.view_header_banner.view.*
 
-
-class HomeFragment : BaseFragment(), HomeContract.View {
+class HomeFragment : BaseListFragment<ArticleBean.Article>(), HomeContract.View {
 
     private lateinit var homePresenter: HomePresenter
-    private val articleAdapter: ArticleAdapter = ArticleAdapter(R.layout.item_article, null)
     private lateinit var bannerView: com.youth.banner.Banner
-    override fun getContentViewId(): Int {
-        return R.layout.fragment_home
+
+    override fun createAdapter(): BaseQuickAdapter<ArticleBean.Article, BaseViewHolder> {
+        return ArticleAdapter(R.layout.item_article, null)
     }
 
-    override fun init(savedInstanceState: Bundle?) {
-        recycleView.layoutManager = LinearLayoutManager(context)
-        recycleView.adapter = articleAdapter
-        val view = LayoutInflater.from(context).inflate(R.layout.view_header_banner, recycleView, false)
+    override val contentViewId: Int=R.layout.fragment_home
+
+    override fun init(bundle: Bundle?) {
+        val view = LayoutInflater.from(context).inflate(R.layout.view_header_banner, recyclerView, false)
         bannerView = view.bannerView
         val layoutParams = bannerView.layoutParams as FrameLayout.LayoutParams
         layoutParams.width = ScreenUtil.getScreenInfo(context).widthPixels
@@ -43,31 +43,21 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         bannerView.setDelayTime(2500)
         bannerView.setImageLoader(GlideImageLoader())
 
-        if (articleAdapter.headerLayout == null) {
-            articleAdapter.setHeaderView(view)
-        }
-
-        refreshLayout.setOnRefreshListener {
-            homePresenter.getArticle()
-        }
-
-        refreshLayout.setOnLoadMoreListener {
-            homePresenter.loadMoreArticle()
+        if (adapter.headerLayout == null) {
+            adapter.setHeaderView(view)
         }
 
         homePresenter = HomePresenter(this)
         homePresenter.getBanner()
-        homePresenter.getArticle()
+        homePresenter.getArticle(true)
     }
 
-    override fun onStart() {
-        super.onStart()
-        bannerView.startAutoPlay()
+    override fun refresh() {
+        homePresenter.getArticle(true)
     }
 
-    override fun onStop() {
-        super.onStop()
-        bannerView.stopAutoPlay()
+    override fun loadMore() {
+        homePresenter.getArticle(false)
     }
 
     override fun showBanners(banner: List<Banner>) {
@@ -83,34 +73,40 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         bannerView.start()
     }
 
-    override fun showArticles(articleBean: ArticleBean) {
-        if (articleBean.curPage == 1) {
-            articleAdapter.setNewData(articleBean.datas)
-            refreshLayout.finishRefresh()
+    override fun showArticles(articleBean: ArticleBean, refresh: Boolean) {
+        if (refresh) {
+            adapter.setNewData(articleBean.datas)
+            refreshSuccess(true)
         } else {
-            articleAdapter.addData(articleBean.datas)
-            refreshLayout.finishLoadMore()
+            adapter.addData(articleBean.datas)
+            setHasMore(!articleBean.over)
+            loadSuccess(true)
         }
     }
 
-    override fun isActive(): Boolean {
-        return isAdded
+    override fun noMoreArticle() {
+        setHasMore(false)
+        loadSuccess(true)
     }
 
     override fun articleError() {
-        Toast.makeText(context, "article error", Toast.LENGTH_SHORT).show()
-        refreshLayout.finishLoadMore()
+
     }
 
     override fun bannerError() {
-        refreshLayout.finishLoadMore()
         Toast.makeText(context, "banner error", Toast.LENGTH_SHORT).show()
     }
 
-    override fun noMoreArticle(): Boolean {
-        refreshLayout.finishLoadMore()
-        return true
+    override fun isActive(): Boolean = isAdded
+
+
+    override fun onStart() {
+        super.onStart()
+        bannerView.startAutoPlay()
     }
 
-
+    override fun onStop() {
+        super.onStop()
+        bannerView.stopAutoPlay()
+    }
 }
