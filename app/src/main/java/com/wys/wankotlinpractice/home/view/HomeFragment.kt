@@ -53,6 +53,7 @@ class HomeFragment : BaseListFragment<ArticleBean.Article>(), HomeContract.View 
     }
 
     override fun refresh() {
+        homePresenter.getBanner()
         homePresenter.getArticle(true)
     }
 
