@@ -11,6 +11,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.api.RefreshFooter
+import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.wys.wankotlinpractice.R
 
@@ -80,16 +82,35 @@ abstract class BaseListFragment<T : Any> : Fragment() {
         this.hasMore = hasMore
     }
 
-    @JvmOverloads
-    fun addHeaderView(header: View, index: Int = -1) {
+    /**
+     * 设置  smartrefreshlayoutt  header footer
+     */
+    fun setRefreshHeader(refreshHeader: RefreshHeader) {
+        smartRefreshLayout!!.setRefreshHeader(refreshHeader)
+    }
+
+    fun setRefreshFooter(refreshFooter: RefreshFooter) {
+        smartRefreshLayout!!.setRefreshFooter(refreshFooter)
+    }
+
+    /**
+     * 设置  recycleView  header footer
+     */
+    fun addRecycleViewHeader(header: View) {
+        addRecycleViewHeader(header, -1)
+    }
+
+    fun addRecycleViewHeader(header: View, index: Int) {
         adapter!!.addHeaderView(header, index)
     }
 
-    @JvmOverloads
-    fun addFooterView(view: View, index: Int = -1) {
-        adapter!!.addFooterView(view, index)
+    fun addRecycleViewFooter(view: View) {
+        addRecycleViewFooter(view, -1)
     }
 
+    fun addRecycleViewFooter(view: View, index: Int) {
+        adapter!!.addFooterView(view, index)
+    }
     /**
      * 禁止下拉刷新
      */
@@ -100,7 +121,7 @@ abstract class BaseListFragment<T : Any> : Fragment() {
     /**
      * 禁止上拉加载
      */
-    fun enableloadMore(loadMore: Boolean) {
+    fun enableLoadMore(loadMore: Boolean) {
         smartRefreshLayout!!.setEnableLoadMore(loadMore)
     }
 
@@ -147,7 +168,7 @@ abstract class BaseListFragment<T : Any> : Fragment() {
     /**
      * 下拉刷新数据
      */
-    protected fun refreshData() {
+    private fun refreshData() {
         if (isLoading) {
             return
         }
@@ -158,7 +179,7 @@ abstract class BaseListFragment<T : Any> : Fragment() {
     /**
      * 上拉加载更多数据
      */
-    fun requestMoreData() {
+    private fun requestMoreData() {
         if (isLoading) {
             return
         }
