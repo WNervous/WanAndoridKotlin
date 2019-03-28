@@ -20,7 +20,7 @@ abstract class BaseListFragment<T : Any> : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
-    lateinit var smartRefreshLayout: SmartRefreshLayout
+    private lateinit var smartRefreshLayout: SmartRefreshLayout
 
     lateinit var adapter: BaseQuickAdapter<T, BaseViewHolder>
 
@@ -72,7 +72,7 @@ abstract class BaseListFragment<T : Any> : Fragment() {
 /// inner method
 ////////////////////////////////////////////////////////////////
 
-    fun hasMore(): Boolean {
+    private fun hasMore(): Boolean {
         return hasMore
     }
 
