@@ -4,13 +4,13 @@ import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
 import com.wys.wankotlinpractice.home.mvp.model.Banner
 import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeBean
 import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeDetailBean
+import com.wys.wankotlinpractice.login.model.LoginBean
+import com.wys.wankotlinpractice.login.model.RegisterBean
 import com.wys.wankotlinpractice.nav.model.NavBean
 import com.wys.wankotlinpractice.net.bean.CommonResponse
 import com.wys.wankotlinpractice.project.model.ProjectBean
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface WanApi {
 
@@ -40,5 +40,17 @@ interface WanApi {
 
     @GET("project/list/{page}/json")
     fun getProjectDetails(@Path("page") page: Int, @Query("cid") cid: Int): Observable<CommonResponse<ArticleBean>>
+
+    /**用户相关*/  //注册
+    @POST("/user/register")
+    fun register(@Body register: RegisterBean): Observable<CommonResponse<Any>>
+
+    //登陆
+    @POST("/user/login")
+    fun login(@Body login: LoginBean): Observable<CommonResponse<Any>>
+
+    //登出
+    @GET("/user/logout/json")
+    fun loginout(): Observable<CommonResponse<Any>>
 
 }

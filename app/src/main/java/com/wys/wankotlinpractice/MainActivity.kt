@@ -1,5 +1,7 @@
 package com.wys.wankotlinpractice
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.wys.wankotlinpractice.adapter.ViewPagerAdapter
@@ -25,11 +27,6 @@ class MainActivity : BaseActivity() {
     }
 
     private fun init() {
-
-//        val hander=Handler{
-//
-//            return@Handler false
-//        }
         bottomNavigationView.setOnNavigationItemSelectedListener {
             toolbar.title = it.title
             when (it.itemId) {
@@ -56,5 +53,12 @@ class MainActivity : BaseActivity() {
         viewPager.adapter = mPagerAdapter
         viewPager.currentItem = 0
         viewPager.offscreenPageLimit = 3
+    }
+
+    companion object {
+        fun open(context: Context) {
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 }

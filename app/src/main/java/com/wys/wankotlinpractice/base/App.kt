@@ -1,6 +1,7 @@
 package com.wys.wankotlinpractice.base
 
 import android.app.Application
+import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.util.Log
@@ -8,9 +9,9 @@ import android.util.Log
 class App : Application() {
 
     private lateinit var sPackageInfo: PackageInfo
-
     override fun onCreate() {
         super.onCreate()
+        content = applicationContext
         Log.d("Application", "create")
     }
 
@@ -29,6 +30,9 @@ class App : Application() {
         return sPackageInfo.packageName
     }
 
+    companion object {
+        lateinit var content: Context
+    }
     private fun initPackageInfo() {
         try {
             Log.d("Application", "applicationContext : ${applicationContext == null}")

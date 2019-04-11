@@ -7,8 +7,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 class ApiService {
     private val DEFAULT_TIME_OUT = 15.toLong()
 
-    private val mBaseUrl = "http://www.wanandroid.com/"
-    private val mBaseTestUrl = "http://www.wanandroid.com/"
+    private val mBaseUrl = "https://www.wanandroid.com/"
+    private val mBaseTestUrl = "https://www.wanandroid.com/"
 
     private lateinit var mBaseApi: BaseApi
 
