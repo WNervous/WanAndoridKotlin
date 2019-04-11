@@ -52,6 +52,8 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     }
 
     override fun registerSuccess() {
+        registerGroup.visibility = View.GONE
+        login.visibility = View.VISIBLE
         ToastHelper.showShort("success")
     }
 
