@@ -4,41 +4,45 @@ import android.app.Application
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.util.Log
+import com.tencent.mmkv.MMKV
 
 class App : Application() {
 
-    private lateinit var sPackageInfo: PackageInfo
     override fun onCreate() {
         super.onCreate()
         content = applicationContext
-        Log.d("Application", "create")
-    }
-
-    fun getVersionName(): String {
-        initPackageInfo()
-        return sPackageInfo.versionName
-    }
-
-    fun getVersionCode(): Int {
-        initPackageInfo()
-        return sPackageInfo.versionCode
-    }
-
-    fun getAppPackageName(): String {
-        initPackageInfo()
-        return sPackageInfo.packageName
+        MMKV.initialize(this)
     }
 
     companion object {
+
         lateinit var content: Context
-    }
-    private fun initPackageInfo() {
-        try {
-            Log.d("Application", "applicationContext : ${applicationContext == null}")
-            sPackageInfo = applicationContext.packageManager.getPackageInfo(applicationContext.packageName, 0)
-        } catch (e: PackageManager.NameNotFoundException) {
-            throw RuntimeException("NameNotFoundException when querying own package. Should not happen", e)
+
+        private lateinit var sPackageInfo: PackageInfo
+
+        fun getVersionName(): String {
+            initPackageInfo()
+            return sPackageInfo.versionName
+        }
+
+        fun getVersionCode(): Int {
+            initPackageInfo()
+            return sPackageInfo.versionCode
+        }
+
+        fun getAppPackageName(): String {
+            initPackageInfo()
+            return sPackageInfo.packageName
+        }
+
+        private fun initPackageInfo() {
+            try {
+                sPackageInfo = content.packageManager.getPackageInfo(content.packageName, 0)
+            } catch (e: PackageManager.NameNotFoundException) {
+                throw RuntimeException("NameNotFoundException when querying own package. Should not happen", e)
+            }
         }
     }
+
+
 }

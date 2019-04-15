@@ -1,5 +1,6 @@
 package com.wys.wankotlinpractice.net
 
+import com.wys.wankotlinpractice.net.interceptor.BaseInterceptor
 import com.wys.wankotlinpractice.net.interceptor.HeaderInterceptor
 import com.wys.wankotlinpractice.net.interceptor.ParamsInterceptor
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,9 +25,8 @@ class ApiService {
             headerInterceptor = HeaderInterceptor()
             httpLogInterceptor = httpLoggingInterceptor
             paramsInterceptor = ParamsInterceptor()
+            baseInterceptor = BaseInterceptor()
             mBaseApi = builder()
-
-
         }
     }
 

@@ -19,6 +19,7 @@ open class BaseApi(builder: Builder) {
             .readTimeout(builder.readTimeOut, TimeUnit.SECONDS)
             .writeTimeout(builder.writeTimeOut, TimeUnit.SECONDS)
 
+        if (builder.baseInterceptor != null) okHttpBuilder.addInterceptor(builder.baseInterceptor!!)
         if (builder.headerInterceptor != null) okHttpBuilder.addInterceptor(builder.headerInterceptor!!)
         if (builder.paramsInterceptor != null) okHttpBuilder.addInterceptor(builder.paramsInterceptor!!)
         if (!builder.isRelease) {
@@ -45,6 +46,7 @@ open class BaseApi(builder: Builder) {
         internal var httpLogInterceptor: Interceptor? = null
         internal var headerInterceptor: Interceptor? = null
         internal var paramsInterceptor: Interceptor? = null
+        internal var baseInterceptor: Interceptor? = null
 
         internal var baseReleaseUrl: String? = null
         internal var baseDebugUrl: String? = null
