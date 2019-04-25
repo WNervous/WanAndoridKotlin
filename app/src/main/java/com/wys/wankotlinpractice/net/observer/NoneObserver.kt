@@ -3,7 +3,7 @@ package com.wys.wankotlinpractice.net.observer
 import com.socks.library.KLog
 import com.wys.wankotlinpractice.net.bean.CommonResponse
 
-class NoneObserver<T> : BaseObserver<CommonResponse<T>>() {
+open class NoneObserver<T> : BaseObserver<CommonResponse<T>>() {
 
     override fun onSuccess(t: CommonResponse<T>) {
         KLog.d(t)

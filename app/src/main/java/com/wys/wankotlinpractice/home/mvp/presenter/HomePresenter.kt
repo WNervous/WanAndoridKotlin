@@ -26,7 +26,7 @@ class HomePresenter(val view: HomeContract.View) : HomeContract.Presenter {
                 }
 
                 override fun onFailure(e: Throwable) {
-                    KLog.e(e.toString())
+                    KLog.e(e)
                     view.bannerError()
                 }
             })
@@ -54,7 +54,7 @@ class HomePresenter(val view: HomeContract.View) : HomeContract.Presenter {
                 }
 
                 override fun onFailure(e: Throwable) {
-                    KLog.e(e.toString())
+                    KLog.e(e)
                     view.articleError()
                 }
 

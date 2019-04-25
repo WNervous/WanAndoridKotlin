@@ -4,8 +4,8 @@ import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
 import com.wys.wankotlinpractice.home.mvp.model.Banner
 import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeBean
 import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeDetailBean
+import com.wys.wankotlinpractice.login.manager.User
 import com.wys.wankotlinpractice.login.model.LoginBean
-import com.wys.wankotlinpractice.login.model.RegisterBean
 import com.wys.wankotlinpractice.nav.model.NavBean
 import com.wys.wankotlinpractice.net.bean.CommonResponse
 import com.wys.wankotlinpractice.project.model.ProjectBean
@@ -42,15 +42,30 @@ interface WanApi {
     fun getProjectDetails(@Path("page") page: Int, @Query("cid") cid: Int): Observable<CommonResponse<ArticleBean>>
 
     /**用户相关*/  //注册
+    @FormUrlEncoded
     @POST("/user/register")
-    fun register(@Body register: RegisterBean): Observable<CommonResponse<Any>>
+    fun register2(@Field("username") username: String, @Field("password") password: String, @Field("repassword") repassword: String): Observable<CommonResponse<User>>
 
     //登陆
+    @FormUrlEncoded
     @POST("/user/login")
-    fun login(@Body login: LoginBean): Observable<CommonResponse<Any>>
+    fun login(@Body login: LoginBean): Observable<CommonResponse<User>>
+
+    //登陆
+    @FormUrlEncoded
+    @POST("/user/login")
+    fun login2(@Field("username") username: String, @Field("password") password: String): Observable<CommonResponse<User>>
 
     //登出
     @GET("/user/logout/json")
     fun loginout(): Observable<CommonResponse<Any>>
+
+    // 收藏
+    @POST("lg/collect/{id}/json")
+    fun collectionArticle(@Path("id") id: Int): Observable<CommonResponse<Any>>
+
+    //取消收藏
+    @POST("lg/uncollect_originId/{id}/json")
+    fun cancelCollection(@Path("id") id: Int): Observable<CommonResponse<Any>>
 
 }

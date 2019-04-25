@@ -1,5 +1,7 @@
 package com.wys.wankotlinpractice.login
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.wys.wankotlinpractice.R
@@ -23,6 +25,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     private fun setListener() {
         registerHint.setOnClickListener {
             login.visibility = View.GONE
+            it.visibility = View.GONE
             registerGroup.visibility = View.VISIBLE
         }
         noLogin.setOnClickListener {
@@ -45,6 +48,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     override fun loginSuccess() {
         ToastHelper.showLong("login success")
+        finish()
     }
 
     override fun loginFail(e: Throwable) {
@@ -63,4 +67,12 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     override fun isActive(): Boolean = isFinishing
 
+    companion object {
+        fun open(context: Context) {
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.apply {
+                context.startActivity(this)
+            }
+        }
+    }
 }

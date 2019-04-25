@@ -12,6 +12,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
+import com.wys.wankotlinpractice.login.LoginActivity
+import com.wys.wankotlinpractice.login.manager.UserManager
 import kotlinx.android.synthetic.main.view_article.view.*
 
 class ArticleView(context: Context?, attrs: AttributeSet?) : ConstraintLayout(context, attrs) {
@@ -43,13 +45,16 @@ class ArticleView(context: Context?, attrs: AttributeSet?) : ConstraintLayout(co
         }
         collection.setImageResource(if (article.collect) R.drawable.ic_collection else R.drawable.ic_uncollection)
         collection.setOnClickListener {
-            if (article.collect) {
-
+            if (UserManager.isLogin()) {
+                LoginActivity.open(context)
             } else {
+                if (article.collect) {
 
+                } else {
+
+                }
             }
         }
-
     }
 
 

@@ -48,6 +48,10 @@ android {
         }
     }
 
+    androidExtensions {
+        experimental = true
+    }
+
     applicationVariants.all {
         //判断是release还是debug版本
         def buildType = it.buildType.name
