@@ -1,8 +1,8 @@
 package com.wys.wankotlinpractice.net.interceptor
 
 import android.text.TextUtils
+import android.util.Log
 import com.wys.wankotlinpractice.base.App
-import com.wys.wankotlinpractice.base.Constants.KEY_COOKIE
 import com.wys.wankotlinpractice.login.manager.UserManager
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -19,7 +19,6 @@ class HeaderInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
-
         val builder = request.newBuilder()
         builder
             .addHeader(PARAMS_KEY_API_VERSION, API_VERSION)
@@ -28,8 +27,10 @@ class HeaderInterceptor : Interceptor {
             .addHeader("User-Agent", "Android/${App.getAppPackageName()}/${App.getVersionName()}")
             .build()
 
-        if (!TextUtils.isEmpty(UserManager.getCookie(KEY_COOKIE))) {
-            builder.addHeader(PARAMS_LOCAL_COOKIE, UserManager.getCookie(KEY_COOKIE)).build()
+
+        if (!TextUtils.isEmpty(UserManager.getCookie())) {
+            Log.d("HeaderInterceptor",UserManager.getCookie())
+            builder.addHeader(PARAMS_LOCAL_COOKIE, UserManager.getCookie()).build()
         }
 
         return chain.proceed(request)

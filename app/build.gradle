@@ -28,7 +28,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     lintOptions {
         abortOnError false
@@ -112,4 +112,5 @@ dependencies {
     implementation 'com.github.BaronZ88:Retrofit2-FastJson-Converter:1.2'
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     implementation 'com.tencent:mmkv:1.0.18'
+    implementation 'com.android.support:multidex:1.0.3'
 }

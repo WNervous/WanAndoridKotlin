@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.support.multidex.MultiDex
 import com.tencent.mmkv.MMKV
 
 class App : Application() {
@@ -12,6 +13,7 @@ class App : Application() {
         super.onCreate()
         content = applicationContext
         MMKV.initialize(this)
+        MultiDex.install(this)
     }
 
     companion object {
