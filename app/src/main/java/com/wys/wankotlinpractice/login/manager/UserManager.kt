@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 object UserManager {
 
     private var user: User? = null
-    fun isLogin(): Boolean = user != null && !TextUtils.isEmpty(user?.id.toString())
+    fun isLogin(): Boolean = user != null && !TextUtils.isEmpty(user?.id.toString())  // todo 判断的方式不对
 
 //    init {
 //        val string = Preference.getString(Constants.KEY_USER_DATA)
