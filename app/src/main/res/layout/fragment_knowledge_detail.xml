@@ -7,7 +7,7 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -18,22 +18,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-    <com.flyco.tablayout.SlidingTabLayout
-            android:id="@+id/slidingTabLayout"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            android:layout_width="match_parent"
-            app:tl_textsize="16sp"
-            android:elevation="@dimen/dp_4"
-            app:tl_indicator_color="@color/colorAccent"
-            android:background="@color/colorPrimary"
-            android:layout_height="?actionBarSize"
-            tools:layout_height="64dp"/>
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/slidingTabLayout"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:elevation="@dimen/dp_4"
+                app:tabMode="scrollable"
+                app:tabTextAppearance="@style/TableTextAppearance"
+                app:tabIndicatorColor="@color/colorAccent"
+                android:background="@color/colorPrimary"
+                android:layout_height="?actionBarSize"
+                tools:layout_height="64dp"/>
+
+    </androidx.viewpager.widget.ViewPager>
 
 </LinearLayout>

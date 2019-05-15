@@ -3,11 +3,12 @@ package com.wys.wankotlinpractice
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.navigation.NavigationView
 import com.wys.wankotlinpractice.adapter.ViewPagerAdapter
 import com.wys.wankotlinpractice.base.BaseActivity
 import com.wys.wankotlinpractice.home.view.HomeFragment
@@ -16,7 +17,6 @@ import com.wys.wankotlinpractice.nav.view.NavFragment
 import com.wys.wankotlinpractice.project.view.ProjectFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.content_main.*
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -54,6 +54,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             true
         }
         bottomNavigationView.selectedItemId = R.id.home
+
     }
 
     private fun addFragments() {
@@ -66,9 +67,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun initViewPager() {
+        val res = listOf(R.id.home, R.id.knowledge, R.id.navigation, R.id.project)
         viewPager.adapter = mPagerAdapter
         viewPager.currentItem = 0
         viewPager.offscreenPageLimit = 3
+        viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                bottomNavigationView.selectedItemId = res[position]
+            }
+        })
     }
 
     override fun onBackPressed() {

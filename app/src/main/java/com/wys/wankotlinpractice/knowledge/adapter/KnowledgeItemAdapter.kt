@@ -1,7 +1,7 @@
 package com.wys.wankotlinpractice.knowledge.adapter
 
-import android.support.annotation.LayoutRes
 import android.widget.TextView
+import androidx.annotation.LayoutRes
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.wys.wankotlinpractice.R

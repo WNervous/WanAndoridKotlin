@@ -1,13 +1,13 @@
 package com.wys.wankotlinpractice.knowledge.adapter
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.wys.wankotlinpractice.knowledge.mvp.model.Children
 import com.wys.wankotlinpractice.knowledge.mvp.view.fragment.KnowledgeDetailItemFragment
 
 class KnowledgePagerAdapter(
-    fragmentManager: FragmentManager?,
+    fragmentManager: FragmentManager,
     private val list: List<Children>
 ) : FragmentPagerAdapter(fragmentManager) {
 
@@ -16,5 +16,7 @@ class KnowledgePagerAdapter(
     }
 
     override fun getCount(): Int = if (list.isEmpty()) 0 else list.size
-
+    override fun getPageTitle(position: Int): CharSequence? {
+        return list[position].name
+    }
 }

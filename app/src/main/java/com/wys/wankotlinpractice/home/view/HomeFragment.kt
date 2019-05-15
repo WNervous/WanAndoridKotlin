@@ -28,7 +28,7 @@ class HomeFragment : BaseListFragment<ArticleBean.Article>(), HomeContract.View 
         return ArticleAdapter(R.layout.item_article, null)
     }
 
-    override val contentViewId: Int=R.layout.fragment_home
+    override val contentViewId: Int = R.layout.fragment_home
 
     override fun init(bundle: Bundle?) {
         val view = LayoutInflater.from(context).inflate(R.layout.view_header_banner, recyclerView, false)

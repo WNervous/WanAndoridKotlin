@@ -25,9 +25,9 @@ class KnowledgeDetailActivity : BaseActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commitAllowingStateLoss()
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState?.let { supportFragmentManager.putFragment(it, KnowledgeDetailFragment::class.java.name, fragment) }
+        outState.let { supportFragmentManager.putFragment(it, KnowledgeDetailFragment::class.java.name, fragment) }
     }
 
     companion object {

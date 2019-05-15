@@ -1,7 +1,7 @@
 package com.wys.wankotlinpractice.utils
 
-import android.support.annotation.StringRes
 import android.widget.Toast
+import androidx.annotation.StringRes
 import com.wys.wankotlinpractice.base.App
 
 object ToastHelper {

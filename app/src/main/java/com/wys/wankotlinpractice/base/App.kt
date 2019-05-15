@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.support.multidex.MultiDex
+import androidx.multidex.MultiDex
 import com.tencent.mmkv.MMKV
 
 class App : Application() {
@@ -27,10 +27,10 @@ class App : Application() {
             return sPackageInfo.versionName
         }
 
-        fun getVersionCode(): Int {
-            initPackageInfo()
-            return sPackageInfo.versionCode
-        }
+//        fun getVersionCode(): Int {
+//            initPackageInfo()
+//            return sPackageInfo.versionCode
+//        }
 
         fun getAppPackageName(): String {
             initPackageInfo()

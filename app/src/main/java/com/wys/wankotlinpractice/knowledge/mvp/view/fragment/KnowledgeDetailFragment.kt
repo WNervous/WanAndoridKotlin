@@ -16,11 +16,10 @@ class KnowledgeDetailFragment : BaseFragment() {
         toolbar.setNavigationOnClickListener { activity?.finish() }
         val knowledgeBean = arguments?.getSerializable(KnowledgeDetailActivity.KEY_KNOWLEDGE) as KnowledgeBean
         toolbar.title = knowledgeBean.name
-        viewPager.adapter = KnowledgePagerAdapter(fragmentManager, knowledgeBean.children)
-        val array = Array(knowledgeBean.children.size) {
-            knowledgeBean.children[it].name
-        }
-        slidingTabLayout.setViewPager(viewPager, array)
+
+        viewPager.adapter = KnowledgePagerAdapter(requireFragmentManager(), knowledgeBean.children)
+
+        slidingTabLayout.setupWithViewPager(viewPager, false)
     }
 
     companion object {

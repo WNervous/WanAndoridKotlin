@@ -1,12 +1,12 @@
 package com.wys.wankotlinpractice.project.adapter
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.wys.wankotlinpractice.project.model.ProjectBean
 import com.wys.wankotlinpractice.project.view.ProjectDetailFragment
 
-class ProjectPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class ProjectPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     private var mList = mutableListOf<ProjectBean>()
     override fun getItem(p0: Int): Fragment {
         val projectBean = mList[p0]
@@ -16,9 +16,13 @@ class ProjectPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int = mList.size
 
 
-    public fun setData(list: MutableList<ProjectBean>) {
+    fun setData(list: MutableList<ProjectBean>) {
         mList.clear()
         mList = list
         notifyDataSetChanged()
+    }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return mList[position].name
     }
 }

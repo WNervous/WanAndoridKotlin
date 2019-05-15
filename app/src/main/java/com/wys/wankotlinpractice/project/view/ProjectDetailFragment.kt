@@ -1,7 +1,7 @@
 package com.wys.wankotlinpractice.project.view
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.wys.wankotlinpractice.R

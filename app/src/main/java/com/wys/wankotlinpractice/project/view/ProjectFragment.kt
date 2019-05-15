@@ -29,11 +29,7 @@ class ProjectFragment : BaseFragment(), ProjectContract.View {
     override fun showProject(list: MutableList<ProjectBean>) {
         slidingTabLayout.visibility = View.VISIBLE
         mAdapter.setData(list)
-        val array = Array(list.size) {
-            list[it].name
-        }
-        slidingTabLayout.setViewPager(viewPager, array)
-
+        slidingTabLayout.setupWithViewPager(viewPager)
     }
 
     override fun onFailed() {

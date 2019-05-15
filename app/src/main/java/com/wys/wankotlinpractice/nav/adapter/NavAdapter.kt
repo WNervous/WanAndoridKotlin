@@ -1,12 +1,12 @@
 package com.wys.wankotlinpractice.nav.adapter
 
-import android.support.annotation.LayoutRes
-import android.support.design.internal.FlowLayout
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
 import android.widget.TextView
+import androidx.annotation.LayoutRes
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.google.android.material.internal.FlowLayout
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.home.view.ArticleDetailActivity
 import com.wys.wankotlinpractice.nav.model.NavBean

@@ -1,7 +1,7 @@
 package com.wys.wankotlinpractice.knowledge.mvp.view.fragment
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.base.BaseFragment
 import com.wys.wankotlinpractice.knowledge.adapter.KnowledgeAdapter
