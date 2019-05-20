@@ -2,6 +2,7 @@ package com.wys.wankotlinpractice
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -40,6 +41,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.string.navigation_drawer_close
         )
         drawerLayout.addDrawerListener(toggle)
+        toggle.drawerArrowDrawable.color = Color.WHITE
         toggle.syncState()
         navigationView.setNavigationItemSelectedListener(this)
 
