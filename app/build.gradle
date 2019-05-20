@@ -7,6 +7,19 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.wys.wankotlinpractice"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    lintOptions {
+        abortOnError false
+    }
+
     signingConfigs {
         release {
             keyAlias 'keystore'
@@ -21,18 +34,7 @@ android {
             storePassword '20190304'
         }
     }
-    compileSdkVersion 28
-    defaultConfig {
-        applicationId "com.wys.wankotlinpractice"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        multiDexEnabled true
-    }
-    lintOptions {
-        abortOnError false
-    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -50,6 +52,10 @@ android {
 
     androidExtensions {
         experimental = true
+    }
+
+    dataBinding {
+        enabled = true
     }
 
     compileOptions {

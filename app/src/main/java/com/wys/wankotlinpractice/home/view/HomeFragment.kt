@@ -37,7 +37,7 @@ class HomeFragment : BaseListFragment<ArticleBean.Article>(), HomeContract.View 
 
     override fun init(bundle: Bundle?) {
         articleViewModel = ViewModelProviders.of(this).get(ArticleViewModel::class.java)
-        articleViewModel.getLiveData().observe(this, Observer {
+        articleViewModel.mulLiveData.observe(this, Observer {
             adapter.setNewData(it)
             KLog.d(it)
         })
