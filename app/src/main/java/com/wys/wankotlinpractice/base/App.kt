@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import androidx.multidex.MultiDex
+import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.mmkv.MMKV
 
 class App : Application() {
@@ -14,6 +15,7 @@ class App : Application() {
         content = applicationContext
         MMKV.initialize(this)
         MultiDex.install(this)
+        CrashReport.initCrashReport(this, "6baf617e19", false)
     }
 
     companion object {
