@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.socks.library.KLog
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.base.BaseListFragment
 import com.wys.wankotlinpractice.glide.GlideImageLoader
@@ -14,6 +17,7 @@ import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
 import com.wys.wankotlinpractice.home.mvp.model.Banner
 import com.wys.wankotlinpractice.home.mvp.presenter.HomePresenter
 import com.wys.wankotlinpractice.home.view.adapter.ArticleAdapter
+import com.wys.wankotlinpractice.home.viewmodel.ArticleViewModel
 import com.wys.wankotlinpractice.utils.ScreenUtil
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -23,6 +27,7 @@ class HomeFragment : BaseListFragment<ArticleBean.Article>(), HomeContract.View 
 
     private lateinit var homePresenter: HomePresenter
     private lateinit var bannerView: com.youth.banner.Banner
+    lateinit var articleViewModel: ArticleViewModel
 
     override fun createAdapter(): BaseQuickAdapter<ArticleBean.Article, BaseViewHolder> {
         return ArticleAdapter(R.layout.item_article, null)
@@ -31,6 +36,11 @@ class HomeFragment : BaseListFragment<ArticleBean.Article>(), HomeContract.View 
     override val contentViewId: Int = R.layout.fragment_home
 
     override fun init(bundle: Bundle?) {
+        articleViewModel = ViewModelProviders.of(this).get(ArticleViewModel::class.java)
+        articleViewModel.getLiveData().observe(this, Observer {
+            adapter.setNewData(it)
+            KLog.d(it)
+        })
         val view = LayoutInflater.from(context).inflate(R.layout.view_header_banner, recyclerView, false)
         bannerView = view.bannerView
         val layoutParams = bannerView.layoutParams as FrameLayout.LayoutParams
@@ -76,10 +86,10 @@ class HomeFragment : BaseListFragment<ArticleBean.Article>(), HomeContract.View 
 
     override fun showArticles(articleBean: ArticleBean, refresh: Boolean) {
         if (refresh) {
-            adapter.setNewData(articleBean.datas)
+            articleViewModel.setData(articleBean.datas)
             refreshSuccess(true)
         } else {
-            adapter.addData(articleBean.datas)
+            articleViewModel.addData(articleBean.datas)
             setHasMore(!articleBean.over)
             loadSuccess(true)
         }
