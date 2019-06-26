@@ -1,4 +1,4 @@
-package com.wys.wankotlinpractice.home.view
+package com.wys.wankotlinpractice.home.mvvm.view
 
 import android.content.Context
 import android.content.Intent

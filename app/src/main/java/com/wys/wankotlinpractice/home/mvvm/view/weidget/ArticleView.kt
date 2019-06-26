@@ -1,4 +1,4 @@
-package com.wys.wankotlinpractice.home.view.weidget
+package com.wys.wankotlinpractice.home.mvvm.view.weidget
 
 import android.content.Context
 import android.text.TextUtils
@@ -11,7 +11,7 @@ import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.wys.wankotlinpractice.R
-import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
+import com.wys.wankotlinpractice.home.mvvm.model.ArticleBean
 import com.wys.wankotlinpractice.login.LoginActivity
 import com.wys.wankotlinpractice.login.manager.UserManager
 import kotlinx.android.synthetic.main.view_article.view.*

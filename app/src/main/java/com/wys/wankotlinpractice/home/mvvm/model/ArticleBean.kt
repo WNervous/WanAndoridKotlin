@@ -1,4 +1,4 @@
-package com.wys.wankotlinpractice.home.mvp.model
+package com.wys.wankotlinpractice.home.mvvm.model
 
 data class ArticleBean(
     val curPage: Int,

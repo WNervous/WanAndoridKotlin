@@ -2,8 +2,8 @@ package com.wys.wankotlinpractice.home.mvp.presenter
 
 import com.socks.library.KLog
 import com.wys.wankotlinpractice.home.mvp.contract.HomeContract
-import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
-import com.wys.wankotlinpractice.home.mvp.model.Banner
+import com.wys.wankotlinpractice.home.mvvm.model.ArticleBean
+import com.wys.wankotlinpractice.home.mvvm.model.Banner
 import com.wys.wankotlinpractice.net.ApiService
 import com.wys.wankotlinpractice.net.bean.CommonResponse
 import com.wys.wankotlinpractice.net.observer.CommonObserver

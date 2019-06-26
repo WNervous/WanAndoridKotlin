@@ -5,7 +5,7 @@ import androidx.annotation.LayoutRes
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.wys.wankotlinpractice.R
-import com.wys.wankotlinpractice.home.view.ArticleDetailActivity
+import com.wys.wankotlinpractice.home.mvvm.view.ArticleDetailActivity
 import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgePointBean
 
 class KnowledgeItemAdapter(

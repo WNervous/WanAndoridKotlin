@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.google.android.material.internal.FlowLayout
 import com.wys.wankotlinpractice.R
-import com.wys.wankotlinpractice.home.view.ArticleDetailActivity
+import com.wys.wankotlinpractice.home.mvvm.view.ArticleDetailActivity
 import com.wys.wankotlinpractice.nav.model.NavBean
 
 class NavAdapter(@LayoutRes int: Int, list: List<NavBean>) :

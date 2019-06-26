@@ -32,7 +32,7 @@
 
 
         <activity
-                android:name=".home.view.ArticleDetailActivity"
+                android:name="com.wys.wankotlinpractice.home.mvvm.view.ArticleDetailActivity"
                 android:screenOrientation="sensorPortrait"
                 />
 

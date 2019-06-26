@@ -6,8 +6,8 @@ import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.base.BaseFragment
-import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
-import com.wys.wankotlinpractice.home.view.adapter.ArticleAdapter
+import com.wys.wankotlinpractice.home.mvvm.model.ArticleBean
+import com.wys.wankotlinpractice.home.mvvm.view.adapter.ArticleAdapter
 import com.wys.wankotlinpractice.project.contract.ProjectDetailContract
 import com.wys.wankotlinpractice.project.presenter.ProjectDetailPresenter
 import kotlinx.android.synthetic.main.fragment_project_detail.*

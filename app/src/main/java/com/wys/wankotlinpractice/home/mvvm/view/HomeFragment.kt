@@ -1,4 +1,4 @@
-package com.wys.wankotlinpractice.home.view
+package com.wys.wankotlinpractice.home.mvvm.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,11 +13,11 @@ import com.wys.wankotlinpractice.R
 import com.wys.wankotlinpractice.base.BaseListFragment
 import com.wys.wankotlinpractice.glide.GlideImageLoader
 import com.wys.wankotlinpractice.home.mvp.contract.HomeContract
-import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
-import com.wys.wankotlinpractice.home.mvp.model.Banner
 import com.wys.wankotlinpractice.home.mvp.presenter.HomePresenter
-import com.wys.wankotlinpractice.home.view.adapter.ArticleAdapter
-import com.wys.wankotlinpractice.home.viewmodel.ArticleViewModel
+import com.wys.wankotlinpractice.home.mvvm.model.ArticleBean
+import com.wys.wankotlinpractice.home.mvvm.model.Banner
+import com.wys.wankotlinpractice.home.mvvm.view.adapter.ArticleAdapter
+import com.wys.wankotlinpractice.home.mvvm.viewmodel.ArticleViewModel
 import com.wys.wankotlinpractice.utils.ScreenUtil
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.fragment_home.*

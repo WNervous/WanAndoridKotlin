@@ -12,7 +12,7 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.navigation.NavigationView
 import com.wys.wankotlinpractice.adapter.ViewPagerAdapter
 import com.wys.wankotlinpractice.base.BaseActivity
-import com.wys.wankotlinpractice.home.view.HomeFragment
+import com.wys.wankotlinpractice.home.mvvm.view.HomeFragment
 import com.wys.wankotlinpractice.knowledge.mvp.view.fragment.KnowledgeFragment
 import com.wys.wankotlinpractice.nav.view.NavFragment
 import com.wys.wankotlinpractice.project.view.ProjectFragment

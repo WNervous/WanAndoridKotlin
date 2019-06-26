@@ -2,8 +2,8 @@ package com.wys.wankotlinpractice.home.mvp.contract
 
 import com.wys.wankotlinpractice.base.IPresenter
 import com.wys.wankotlinpractice.base.IView
-import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
-import com.wys.wankotlinpractice.home.mvp.model.Banner
+import com.wys.wankotlinpractice.home.mvvm.model.ArticleBean
+import com.wys.wankotlinpractice.home.mvvm.model.Banner
 
 class HomeContract {
     interface View : IView {

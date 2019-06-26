@@ -1,6 +1,6 @@
 package com.wys.wankotlinpractice.project.presenter
 
-import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
+import com.wys.wankotlinpractice.home.mvvm.model.ArticleBean
 import com.wys.wankotlinpractice.net.ApiService
 import com.wys.wankotlinpractice.net.bean.CommonResponse
 import com.wys.wankotlinpractice.net.observer.CommonObserver

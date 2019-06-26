@@ -1,7 +1,7 @@
 package com.wys.wankotlinpractice.net
 
-import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
-import com.wys.wankotlinpractice.home.mvp.model.Banner
+import com.wys.wankotlinpractice.home.mvvm.model.ArticleBean
+import com.wys.wankotlinpractice.home.mvvm.model.Banner
 import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeBean
 import com.wys.wankotlinpractice.knowledge.mvp.model.KnowledgeDetailBean
 import com.wys.wankotlinpractice.login.manager.User

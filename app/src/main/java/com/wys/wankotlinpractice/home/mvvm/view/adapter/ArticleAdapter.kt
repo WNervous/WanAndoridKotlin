@@ -1,11 +1,11 @@
-package com.wys.wankotlinpractice.home.view.adapter
+package com.wys.wankotlinpractice.home.mvvm.view.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.wys.wankotlinpractice.R
-import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
-import com.wys.wankotlinpractice.home.view.ArticleDetailActivity
-import com.wys.wankotlinpractice.home.view.weidget.ArticleView
+import com.wys.wankotlinpractice.home.mvvm.model.ArticleBean
+import com.wys.wankotlinpractice.home.mvvm.view.ArticleDetailActivity
+import com.wys.wankotlinpractice.home.mvvm.view.weidget.ArticleView
 
 class ArticleAdapter(layoutResId: Int, data: List<ArticleBean.Article>?) :
     BaseQuickAdapter<ArticleBean.Article, BaseViewHolder>(layoutResId, data) {

@@ -2,7 +2,7 @@ package com.wys.wankotlinpractice.project.contract
 
 import com.wys.wankotlinpractice.base.IPresenter
 import com.wys.wankotlinpractice.base.IView
-import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
+import com.wys.wankotlinpractice.home.mvvm.model.ArticleBean
 
 class ProjectDetailContract {
 

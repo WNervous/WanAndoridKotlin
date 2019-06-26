@@ -1,19 +1,14 @@
-package com.wys.wankotlinpractice.home.viewmodel
+package com.wys.wankotlinpractice.home.mvvm.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.wys.wankotlinpractice.home.mvp.model.ArticleBean
+import androidx.lifecycle.ViewModel
+import com.wys.wankotlinpractice.home.mvvm.model.ArticleBean
 
-class ArticleViewModel(application: Application) : AndroidViewModel(application) {
+class ArticleViewModel : ViewModel() {
 
     private var articleList = mutableListOf<ArticleBean.Article>()
 
     var mulLiveData = MutableLiveData<MutableList<ArticleBean.Article>>()
-
-    fun getLiveData(): MutableLiveData<MutableList<ArticleBean.Article>> {
-        return mulLiveData
-    }
 
     fun setData(data: MutableList<ArticleBean.Article>) {
         articleList = data
@@ -24,4 +19,6 @@ class ArticleViewModel(application: Application) : AndroidViewModel(application)
         articleList.addAll(data)
         mulLiveData.value = articleList
     }
+
+
 }
